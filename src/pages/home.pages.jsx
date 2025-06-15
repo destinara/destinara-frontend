@@ -1,26 +1,20 @@
+import { Navbar, Carousel, CardDestinasi } from "../components";
+import { destinations } from "../api/data";
+
 export const Home = () => {
   return (
     <div>
-      <nav>
-        <img src="" alt="" />
-      </nav>
+      <Navbar />
 
-      <div className="slider"></div>
+      <Carousel destinations={destinations} />
 
-      <section className="recomendations">
-        <h1>Rekomendasi destinasi untuk kamu</h1>
+      <section className="m-4 md:mx-10 lg:mx-20">
+        <h2 className="mb-4 text-2xl font-bold">Rekomendasi</h2>
 
-        <div className="grid">
-          <div className="card">
-            <img src="" alt="" />
-            <div className="card-body">
-              <h2>Destinasi</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam quidem quia quos quae quod quibusdam quia quas quae.
-              </p>
-            </div>
-          </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {destinations.map((dest) => (
+            <CardDestinasi key={dest.id} {...dest} />
+          ))}
         </div>
       </section>
     </div>

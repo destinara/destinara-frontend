@@ -1,9 +1,9 @@
 import authBg from "../assets/img/bg_auth.png";
 
-export const AuthLayouts = ({ children }) => {
+export const AuthLayouts = ({ children, style }) => {
   return (
     <div
-      className="relative flex items-center justify-center w-full h-screen bg-center bg-no-repeat bg-cover"
+      className={`relative flex items-center justify-center w-full ${style} bg-center bg-no-repeat bg-cover sm:h-screen`}
       style={{ backgroundImage: `url(${authBg})` }}
     >
       {/* Overlay gradient putih */}
