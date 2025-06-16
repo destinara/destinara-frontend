@@ -8,13 +8,10 @@ export const getDataKuliner = async ({ provinsi, jumlah_data }) => {
     window.location.href = "/login";
   }
 
-  if (!localStorage.getItem("survey_result")) {
-    alert("Silahkan isi survey terlebih dahulu.");
-    window.location.href = "/survey";
-  }
-
-  console.log(provinsi);
-  console.log(jumlah_data);
+  // if (!localStorage.getItem("survey_result")) {
+  //   alert("Silahkan isi survey terlebih dahulu.");
+  //   window.location.href = "/survey";
+  // }
 
   try {
     const res = await axios.get(
