@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const ROOT_API =
-  import.meta.env.ROOT_API || "https://destinara-api.leapcell.app";
+const ROOT_API = import.meta.env.ROOT_API || "https://api.arialog.my.id";
 
 export const SurveyApi = async ({ aktifitas, max_recom, treshold }) => {
   if (!aktifitas) {
@@ -17,13 +16,15 @@ export const SurveyApi = async ({ aktifitas, max_recom, treshold }) => {
       `${ROOT_API}/survey?max_recom=${max_recom}&treshold=${treshold}`,
       {
         aktifitas,
-        token: localStorage.getItem("token"),
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       }
     );
 
     console.log(res.data);
-
-    localStorage.setItem("rekomendasi", res.data);
 
     return res.data;
   } catch (error) {

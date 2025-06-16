@@ -1,10 +1,10 @@
 import { MapPin } from "lucide-react";
 import { Link } from "react-router";
 
-export const CardDestinasi = ({ url_gambar, slug, name, provinsi }) => {
+export const CardKuliner = ({ url_gambar, slug, name, provinsi }) => {
   return (
     <Link
-      to={`/destinations/${slug}`}
+      to={`/kuliners/${slug}`}
       className="block overflow-hidden transition-shadow bg-white shadow-md rounded-2xl hover:shadow-lg"
     >
       {/* url_gambar */}

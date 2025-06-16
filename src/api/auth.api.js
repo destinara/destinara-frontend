@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const ROOT_API =
-  import.meta.env.ROOT_API || "https://destinara-api.leapcell.app";
+const ROOT_API = import.meta.env.ROOT_API || "https://api.arialog.my.id";
 
 export const LoginApi = async (email, password) => {
   if (!email || !password) {

@@ -2,7 +2,6 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import { useNavigate } from "react-router";
 import { useRef, useEffect } from "react";
-import { changeToSlug } from "../utils/ChangeToSlug";
 import { MapPin } from "lucide-react";
 
 export const Carousel = ({ destinations = [], interval = 3000 }) => {
@@ -54,7 +53,7 @@ export const Carousel = ({ destinations = [], interval = 3000 }) => {
         <div
           key={index}
           className="keen-slider__slide relative h-[500px] md:h-[500px] cursor-pointer"
-          onClick={() => navigate(`/destinations/${changeToSlug(item.title)}`)}
+          onClick={() => navigate(`/destinations/${item.slug}`)}
         >
           <div
             className="absolute inset-0 bg-center bg-cover"

@@ -17,7 +17,10 @@ export const Survey = () => {
       const newAktifitas = prev.aktifitas.includes(value)
         ? prev.aktifitas.filter((item) => item !== value)
         : [...prev.aktifitas, value];
-      return { ...prev, aktifitas: newAktifitas };
+      return {
+        ...prev,
+        aktifitas: newAktifitas,
+      };
     });
   };
 
@@ -61,21 +64,7 @@ export const Survey = () => {
       return;
     }
 
-    // // Simpan ke localStorage
-    // localStorage.setItem("survey_result", JSON.stringify(payload));
-    // alert("Survey berhasil disimpan ke localStorage");
-    // window.location.href = "/";
-
-    // e.preventDefault();
-
-    // const payload = {
-    //   aktifitas: formData.aktifitas.map((a) => a.toLowerCase()).join(", "),
-    //   jarak: formData.jarak.toLowerCase(),
-    //   age: formData.age.toLowerCase(),
-    //   frekuensi: formData.frekuensi.toLowerCase(),
-    // };
-
-    const max_recom = 5;
+    const max_recom = 4;
     const treshold = 0.5;
 
     console.log(payload.age);
@@ -85,7 +74,15 @@ export const Survey = () => {
     try {
       const response = await SurveyApi({ aktifitas, max_recom, treshold });
 
+      console.log(response);
+
       if (response.status === "success") {
+        const tipeList = response.data.map((item) => item.tipe_destinasi);
+        const joinedTipe = tipeList.join(", ");
+
+        console.log("Tipe Destinasi:", joinedTipe); // Hasil: "Complex volcano, Cagar Alam, ..."
+
+        localStorage.setItem("survey_result", joinedTipe);
         alert("Survey berhasil disimpan ke localStorage");
         window.location.href = "/";
       } else {
@@ -173,7 +170,8 @@ export const Survey = () => {
           {/* Pertanyaan 3 - Usia */}
           <div className="p-4 bg-white shadow rounded-2xl">
             <p className="mb-2 font-semibold">
-              Berapa usia kamu sekarang? <span className="text-red-500">*</span>
+              Berapa usia kamu sekarang?
+              <span className="text-red-500">*</span>
             </p>
             {["<18", "18 - 25", "26 - 34", "35 - 50", ">50"].map((value) => (
               <label key={value} className="flex items-center gap-2 mt-1">
@@ -196,9 +194,18 @@ export const Survey = () => {
               <span className="text-red-500">*</span>
             </p>
             {[
-              { label: "Jarang (1-2 Kali)", value: "Jarang" },
-              { label: "Kadang - kadang (3-5 Kali)", value: "Kadang" },
-              { label: "Sering (lebih dari 5 kali)", value: "Sering" },
+              {
+                label: "Jarang (1-2 Kali)",
+                value: "Jarang",
+              },
+              {
+                label: "Kadang - kadang (3-5 Kali)",
+                value: "Kadang",
+              },
+              {
+                label: "Sering (lebih dari 5 kali)",
+                value: "Sering",
+              },
             ].map(({ label, value }) => (
               <label key={value} className="flex items-center gap-2 mt-1">
                 <input

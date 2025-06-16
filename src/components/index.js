@@ -5,6 +5,7 @@ import { Carousel } from "./Carousel";
 import { CardDestinasi } from "./CardDestinasi";
 import { RequireAuth } from "./RequireAuth";
 import { GoogleMapEmbed } from "./Maps";
+import { HeroStatic } from "./HeroStatic";
 
 export {
   Input,
@@ -14,4 +15,5 @@ export {
   CardDestinasi,
   RequireAuth,
   GoogleMapEmbed,
+  HeroStatic,
 };

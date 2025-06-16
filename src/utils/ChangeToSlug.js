@@ -1,3 +1,8 @@
 export const changeToSlug = (text) => {
-  return text.toLowerCase().replace(/\s+/g, "-");
+  if (typeof text !== "string") return "";
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "") // buang simbol aneh
+    .replace(/\s+/g, "-");
 };
